@@ -1,4 +1,11 @@
 img{
-    width: 30%;
+    max-width: 100%;
     height: auto;
+    display: block;
+}
+
+@media(max-width: 349px){
+    .title {
+        font-size: 2rem !important;
+    }
 }
