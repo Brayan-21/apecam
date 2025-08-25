@@ -1,0 +1,30 @@
+header{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 6rem;
+    position: fixed;
+}
+
+
+.container-logo{
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.logo{
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+}
+
+.navbar{
+    height: 6rem;
+    border-bottom: 0.1rem solid #fff;
+}
+
+@media(max-width: 1024px) {
+    .navbar-end{
+        display: none;
+    }
+}
