@@ -4,6 +4,7 @@ header{
     flex-direction: column;
     height: 6rem;
     position: fixed;
+    z-index: 9999;
 }
 
 
