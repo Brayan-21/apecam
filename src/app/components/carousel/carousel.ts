@@ -8,10 +8,11 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, signal, ViewChild } fr
 })
 export class Carousel {
   images = [
-    'https://picsum.photos/id/1015/1200/600',
-    'https://picsum.photos/id/1016/1200/600',
-    'https://picsum.photos/id/1018/1200/600',
-    'https://picsum.photos/id/1020/1200/600',
+    'apecam/apecam-02.webp',
+    'apecam/apecam-03.webp',
+    'apecam/apecam-04.webp',
+    'apecam/apecam-05.webp',
+    'apecam/apecam-06.webp',
   ];
 
   currentIndex = signal(0);

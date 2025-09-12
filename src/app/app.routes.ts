@@ -6,11 +6,16 @@ import { Historia } from './components/historia/historia';
 import { QueroDoar } from './components/quero-doar/quero-doar';
 import { Contatos } from './components/contatos/contatos';
 import { Inicio } from './components/inicio/inicio';
+import { Galeria } from './components/galeria/galeria';
 
 export const routes: Routes = [
     {
         path: '',
         loadComponent: () => import('./components/inicio/inicio').then(c => c.Inicio)
+    },
+    {
+        path: 'galeria',
+        loadComponent: () => import('./components/galeria/galeria').then(c => c.Galeria)
     },
     {
         path: 'quem-somos',

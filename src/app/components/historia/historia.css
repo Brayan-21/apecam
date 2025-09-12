@@ -1,0 +1,35 @@
+section{
+	padding: 3rem 1rem;
+	max-width: 1100px;
+	margin: 0 auto;
+    text-align: center;
+}
+
+h1{
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+p{
+	line-height: 1.8;
+	opacity: 0.95;
+}
+
+.media-block{ display: grid; gap: 1rem; text-align: left; }
+
+.timeline{ margin-top: 2rem; position: relative; }
+.timeline::before{
+	content: "";
+	position: absolute;
+	left: 8px;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: rgba(255,102,52,0.5);
+}
+.timeline-item{ display: grid; grid-template-columns: 24px 1fr; gap: 0.75rem; margin: 1rem 0; align-items: start; }
+.timeline-item .dot{ width: 16px; height: 16px; border-radius: 9999px; background: #FF6634; display: inline-block; margin-top: 0.25rem; box-shadow: 0 0 0 4px rgba(255,102,52,0.15); }
+
+@media (min-width: 768px){
+	.media-block{ grid-template-columns: 1fr 1fr; align-items: center; }
+}

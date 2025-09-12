@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
@@ -8,8 +8,16 @@ import { Main } from "./components/main/main";
   selector: 'app-root',
   imports: [Header, Footer, Main],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
-  
+export class App implements OnInit{ 
+
+  ngOnInit(): void {
+    this.setTheme('light');
+  }
+
+  setTheme(theme: 'light' | 'dark') {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
 }

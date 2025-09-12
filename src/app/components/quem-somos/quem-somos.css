@@ -1,0 +1,21 @@
+section{
+	padding: 3rem 1rem;
+	max-width: 900px;
+	margin: 0 auto;
+    text-align: center;
+}
+
+h1{
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+h2{
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+p{
+	line-height: 1.75;
+	opacity: 0.95;
+}

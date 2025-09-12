@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
 }
 
 img{
@@ -10,8 +11,60 @@ img{
     display: block;
 }
 
+.social-fab{
+	position: fixed;
+	right: 1rem;
+	bottom: 1.25rem;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.fab-item{
+	width: 54px;
+	height: 54px;
+	border-radius: 9999px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, #FF784B, #FF6634);
+	box-shadow: 0 10px 24px rgba(255,102,52,0.35);
+	transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.fab-item img{
+	width: 26px;
+	height: 26px;
+	filter: invert(100%);
+}
+
+.fab-item:hover{
+	transform: translateY(-3px) scale(1.03);
+	box-shadow: 0 16px 32px rgba(255,102,52,0.45);
+}
+
+@media (max-width: 480px){
+	.fab-item{ width: 48px; height: 48px; }
+	.fab-item img{ width: 22px; height: 22px; }
+}
+
 @media(max-width: 349px){
     .title {
         font-size: 2rem !important;
     }
+}
+
+/* Posicionar o botão do VLibras alinhado à barra de redes */
+[vw-access-button]{
+	position: fixed !important;
+	right: 1rem !important;
+	bottom: calc(1.25rem + 320px) !important;
+	z-index: 9998 !important;
+}
+
+@media (max-width: 480px){
+	[vw-access-button]{
+		bottom: calc(1.25rem + 280px) !important;
+	}
 }

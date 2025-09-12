@@ -1,0 +1,37 @@
+section{
+	padding: 3rem 1rem;
+	max-width: 1000px;
+	margin: 0 auto;
+    text-align: center;
+}
+
+h1{
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+}
+
+h2{
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+p{
+	line-height: 1.8;
+	opacity: 0.95;
+}
+
+.modalidades h2{
+	position: relative;
+	padding-left: 0.75rem;
+}
+
+.modalidades h2::before{
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.4rem;
+	width: 4px;
+	height: 1.1rem;
+	border-radius: 2px;
+	background: #FF6634;
+}

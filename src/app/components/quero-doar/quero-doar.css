@@ -1,0 +1,37 @@
+section{
+	padding: 3rem 1rem;
+	max-width: 900px;
+	margin: 0 auto;
+    text-align: center;
+}
+
+h1{
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+p{ line-height: 1.75; }
+
+.contatos{
+	margin-top: 1.5rem;
+	padding: 1rem;
+	border: 1px solid rgba(0,0,0,0.08);
+	border-radius: 0.5rem;
+	background: rgba(255,102,52,0.06);
+}
+
+.hero-banner{
+	padding: 3.5rem 1rem;
+	background: radial-gradient(1200px 400px at 10% 0%, rgba(255,102,52,0.15), rgba(255,102,52,0));
+	text-align: left;
+}
+.hero-banner .title{ color: #1a1a1a; }
+.hero-banner .subtitle{ color: #3a3a3a; opacity: 0.9; }
+
+.option{ height: 100%; }
+.option .title{ margin-bottom: 0.5rem; }
+
+.highlight{
+	background: linear-gradient(180deg, rgba(255,102,52,0.08), rgba(255,102,52,0.03));
+	border: 1px solid rgba(255,102,52,0.22);
+}

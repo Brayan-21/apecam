@@ -21,8 +21,10 @@ header{
 
 .navbar{
     height: 6rem;
-    border-bottom: 0.1rem solid #fff;
+    border-bottom: 0.1rem solid #FF6634;
 }
+
+/* restaurado ao estilo original (sem hover custom) */
 
 @media(max-width: 1024px) {
     .navbar-end{

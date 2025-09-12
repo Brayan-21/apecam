@@ -13,10 +13,15 @@
 .carousel-item {
     min-width: 100%;
     user-select: none;
+    height: 80vh;
+    overflow: hidden;
 }
 
 .carousel-item img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;/* cobre o espaço sem distorcer */
+    object-position: center;/* mantém a imagem ancorada no topo */
     display: block;
 }
 

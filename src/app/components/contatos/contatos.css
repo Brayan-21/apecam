@@ -1,0 +1,47 @@
+section{
+	padding: 3rem 1rem;
+	max-width: 900px;
+	margin: 0 auto;
+    text-align: center;
+}
+
+h1{
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.canais{
+	margin-bottom: 1.5rem;
+	padding: 1rem;
+	border: 1px solid rgba(0,0,0,0.08);
+	border-radius: 0.5rem;
+	background: rgba(255,102,52,0.06);
+}
+
+.redes ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0,1fr));
+	gap: 0.5rem 1rem;
+}
+
+.redes a{
+	color: #FF6634;
+	text-decoration: none;
+}
+
+@media (min-width: 640px){
+	.redes ul{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+
+.hero-compact{
+	padding: 2.75rem 1rem;
+	background: radial-gradient(1200px 400px at 10% 0%, rgba(255,102,52,0.15), rgba(255,102,52,0));
+}
+
+.card-contact, .card-socials{
+	border: 1px solid rgba(255,102,52,0.22);
+	background: linear-gradient(180deg, rgba(255,102,52,0.08), rgba(255,102,52,0.03));
+}
