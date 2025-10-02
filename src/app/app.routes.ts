@@ -14,7 +14,7 @@ export const routes: Routes = [
         loadComponent: () => import('./components/inicio/inicio').then(c => c.Inicio)
     },
     {
-        path: 'galeria',
+        path: 'recordacoes',
         loadComponent: () => import('./components/galeria/galeria').then(c => c.Galeria)
     },
     {
@@ -40,5 +40,25 @@ export const routes: Routes = [
     {
         path: 'contato',
         loadComponent: () => import('./components/contatos/contatos').then(c => c.Contatos)
+    },
+    {
+        path: 'noticias',
+        loadComponent: () => import('./components/noticias/noticias').then(c => c.Noticias)
+    },
+    {
+        path: 'agenda',
+        loadComponent: () => import('./components/agenda/agenda').then(c => c.Agenda)
+    },
+    {
+        path: 'conquistas',
+        loadComponent: () => import('./components/conquistas/conquistas').then(c => c.Conquistas)
+    },
+    {
+        path: 'entrevistas',
+        loadComponent: () => import('./components/entrevistas/entrevistas').then(c => c.Entrevistas)
+    },
+    {
+        path: 'historias-superacao',
+        loadComponent: () => import('./components/historias-superacao/historias-superacao').then(c => c.HistoriasSuperacao)
     }
 ];

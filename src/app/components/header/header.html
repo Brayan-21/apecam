@@ -5,10 +5,10 @@
         <div class="navbar-brand">
 
             <div class="container-logo" routerLink="">
-                <img src="logo header laranja 2.0.png" alt="" class="logo">
+                <img src="logo header laranja 2.0.png" alt="Logo da Apecam" class="logo">
             </div>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger mr-2" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" (click)="ativarMenuMobile()">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -25,6 +25,31 @@
                     Quem Somos
                 </a>
 
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Destaques
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" routerLink="/noticias">
+                            Apecam Notícias
+                        </a>
+                        <a class="navbar-item" routerLink="/agenda">
+                            Agenda
+                        </a>
+                        <a class="navbar-item" routerLink="/conquistas">
+                            Nossas Conquistas
+                        </a>
+                        <!-- <hr class="navbar-divider"> -->
+                        <a class="navbar-item" href="https://www.youtube.com/watch?v=1bN278rmCj0" target="_blank">
+                            Entrevistas
+                        </a>
+                         <a class="navbar-item" routerLink="/historias-superacao">
+                            Histórias de Superação
+                        </a>
+                    </div>
+                </div>
+
                 <a class="navbar-item" routerLink="apecam-lovers">
                     Apecam Lovers
                 </a>
@@ -33,20 +58,20 @@
                     Modalidades
                 </a>
 
+                <a class="navbar-item" routerLink="recordacoes">
+                    Recordações
+                </a>
+
                 <a class="navbar-item" routerLink="historia-esporte-paralimpico">
                     História do Esporte Paralímpico
                 </a>
 
-                <a class="navbar-item" routerLink="quero-doar">
-                    Quero Doar
-                </a>
-
-                <a class="navbar-item" routerLink="contato">
+                <!-- <a class="navbar-item" routerLink="contato">
                     Contato
-                </a>
+                </a> -->
 
-                <a class="navbar-item" routerLink="galeria">
-                    Galeria
+                <a class="navbar-item quero-doar" routerLink="quero-doar">
+                    Quero Doar
                 </a>
 
             </div>
@@ -56,3 +81,5 @@
     </nav>
 
 </header>
+
+<app-menu-mobile [menuAtivo]="menuMobile" (menuAtivoChange)="menuMobile = $event"></app-menu-mobile>

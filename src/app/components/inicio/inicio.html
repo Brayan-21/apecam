@@ -9,7 +9,7 @@
 					<h3 class="title is-5">Apecam Notícias</h3>
 					<p>Aqui você fica por dentro das novidades da APECAM.</p>
 					<div class="mt-auto">
-						<a class="button is-text">Ver novidades</a>
+						<a class="button is-text" routerLink="/noticias">Ver novidades</a>
 					</div>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 					<h3 class="title is-5">Dias de treinos</h3>
 					<p>Venha treinar conosco.</p>
 					<div class="mt-auto">
-						<a class="button is-text">Ver agenda</a>
+						<a class="button is-text" routerLink="/agenda">Ver agenda</a>
 					</div>
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 					<h3 class="title is-5">Nossas Conquistas</h3>
 					<p>O caminho para o pódio acontece todos os dias.</p>
 					<div class="mt-auto">
-						<a class="button is-text">Conhecer</a>
+						<a class="button is-text" routerLink="/conquistas">Conhecer</a>
 					</div>
 				</div>
 			</div>
@@ -37,9 +37,9 @@
 			<div class="column is-12-tablet is-6-desktop">
 				<div class="box card-equal">
 					<h3 class="title is-5">Fala presidente</h3>
-					<p>Entrevistas e mensagens da Presidência.</p>
+					<p>Entrevista e mensagens da Presidência.</p>
 					<div class="mt-auto">
-						<a class="button is-text">Assistir</a>
+						<a class="button is-text" href="https://www.youtube.com/watch?v=1bN278rmCj0" target="_blank">Assistir</a>
 					</div>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 					<h3 class="title is-5">Histórias de superação</h3>
 					<p>Relatos que inspiram e transformam.</p>
 					<div class="mt-auto">
-						<a class="button is-text">Ler histórias</a>
+						<a class="button is-text" routerLink="/historias-superacao">Ler histórias</a>
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 					<h3 class="title is-5">Você sabe o que é Esporte Paralímpico?</h3>
 					<p>Da sua origem aos dias atuais.</p>
 					<div class="mt-auto">
-						<a class="button is-primary" routerLink="historia-esporte-paralimpico">Saiba mais</a>
+						<a class="button is-primary" routerLink="/historia-esporte-paralimpico">Saiba mais</a>
 					</div>
 				</div>
 			</div>
@@ -69,14 +69,45 @@
 
 <section class="investors-strip">
 	<div class="container">
-		<h3 class="title is-4 has-text-centered">Investidores Masters</h3>
-		<div class="investor-dots">
-			<img class="dot" src="apecam/apecam-01.webp" alt="Investidor 1" loading="lazy">
-			<img class="dot" src="apecam/apecam-02.webp" alt="Investidor 2" loading="lazy">
-			<img class="dot" src="apecam/apecam-03.webp" alt="Investidor 3" loading="lazy">
-			<img class="dot" src="apecam/apecam-04.webp" alt="Investidor 4" loading="lazy">
-			<img class="dot" src="apecam/apecam-05.webp" alt="Investidor 5" loading="lazy">
-			<img class="dot" src="apecam/apecam-06.webp" alt="Investidor 6" loading="lazy">
+		<h3 class="title is-4 has-text-centered">Apecam Lovers</h3>
+		<h3 class="has-text-centered">Patrocinadores</h3>
+		<div class="patrocinadores">
+			<a class="logo-wrapper" href="https://www.linkedin.com/company/fg-empreendimentos/?originalSubdomain=br" target="_blank">
+				<img class="logo" src="apecam/logo-fg.webp" alt="Logo FG Empredimentos" loading="lazy">
+			</a>
+		</div>
+		<h3 class="has-text-centered">Apoiadores</h3>
+		<div class="apoiadores">
+			<a class="logo-wrapper" href="https://www.empresaqui.com.br/" target="_blank">
+				<img class="logo" src="apecam/logo-empresaqui.webp" alt="Logo Empresa Aqui" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.camboriu.ifc.edu.br/" target="_blank">
+				<img class="logo" src="apecam/logo-ifc.webp" alt="Logo IFC Camboriú" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.santainnhotel.com.br/" target="_blank">			 
+				<img class="logo" src="apecam/logo-santa-inn-hotel.webp" alt="Logo Santa Inn Hotel" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.sicredi.com.br/home/" target="_blank">
+				<img class="logo" src="apecam/logo-sicredi.webp" alt="Logo Sicredi" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.instagram.com/nunosom/" target="_blank">
+				<img class="logo" src="apecam/logo-nuno-som.webp" alt="Logo Nuno Som" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.instagram.com/lojaprerequisito/" target="_blank">
+				<img class="logo" src="apecam/logo-pre-requisito.webp" alt="Logo Loja Pré Requisito Camboriú" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.instagram.com/pizzahotbc_oficial/" target="_blank">
+				<img class="logo" src="apecam/logo-pizza-hot.webp" alt="Logo Pizza Hot Camboriú" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.instagram.com/fmedecamboriu/" target="_blank">
+				<img class="logo" src="apecam/logo-fundacao-esporte-camburiu.webp" alt="Logo Fundação Esporte Camboriú" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.facebook.com/p/Secretaria-Municipal-de-Educa%C3%A7%C3%A3o-de-Cambori%C3%BA-100064346966355/?locale=pt_BR" target="_blank">
+				<img class="logo" src="apecam/logo-secretaria-educacao-de-camburiu.webp" alt="Logo Secretaria de Educação de Camboriú" loading="lazy">
+			</a>
+			<a class="logo-wrapper" href="https://www.camboriu.ifc.edu.br/ensino-2/napne/" target="_blank">
+				<img class="logo" src="apecam/logo-napne-ifc.webp" alt="Logo Napne IFC" loading="lazy">
+			</a>
 		</div>
 	</div>
 </section>

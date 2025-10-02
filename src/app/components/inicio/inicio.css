@@ -106,20 +106,44 @@ section p{
 
 .mt-auto{ margin-top: auto; }
 
-/* investidores masters */
-.investors-strip{
-	padding: 2.5rem 1rem 3.5rem;
-	background: linear-gradient(180deg, rgba(255,102,52,0.06), rgba(255,102,52,0));
+.logo-wrapper {
+    width: 15rem;
+    height: 15rem;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 1rem;
+    padding: 2.5rem; /* ajuste conforme necessário */
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.investor-dots{
-	display: grid;
-	grid-template-columns: repeat(3, 100px);
+.logo{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.patrocinadores{
+	display: flex;
 	justify-content: center;
-	gap: 1.25rem 1.75rem;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 1rem;
+	border-color: #fff;
 }
 
-.investor-dots .dot{
+.apoiadores{
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 1rem;
+	border-color: #fff;
+}
+
+/* .investor-dots .dot{
 	width: 100px;
 	height: 100px;
 	border-radius: 9999px;
@@ -130,9 +154,10 @@ section p{
 	filter: grayscale(100%);
 	opacity: 0.95;
 	transition: filter 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
-}
+} */
 
-.investor-dots .dot:hover{ filter: grayscale(0%); opacity: 1; transform: translateY(-3px); }
+.patrocinadores .logo-wrapper:hover{ filter: grayscale(0%); opacity: 1; transform: translateY(-3px); }
+.apoiadores .logo-wrapper:hover{ filter: grayscale(0%); opacity: 1; transform: translateY(-3px); }
 
 @media (min-width: 640px){ .investor-dots{ grid-template-columns: repeat(6, 100px); } }
 @media (min-width: 1024px){ .investor-dots{ grid-template-columns: repeat(8, 100px); } }

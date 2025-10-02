@@ -29,7 +29,7 @@ img{
 	align-items: center;
 	justify-content: center;
 	background: linear-gradient(180deg, #FF784B, #FF6634);
-	box-shadow: 0 10px 24px rgba(255,102,52,0.35);
+	/* box-shadow: 0 10px 24px rgba(255,102,52,0.35); */
 	transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 

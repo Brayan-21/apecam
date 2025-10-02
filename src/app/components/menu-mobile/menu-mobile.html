@@ -1,0 +1,52 @@
+<div [ngClass]="'modal ' + menuAtivo">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="mobile-menu">
+        <a class="menu-item" routerLink="quem-somos">
+            Quem Somos
+        </a>
+
+        <div class="menu-item destaque-btn" (click)="toggleSubmenu()" [class.active]="isSubmenuOpen">
+            <span>Destaques</span>
+        </div>
+
+        <div class="submenu" [class.active]="isSubmenuOpen">
+            <a class="submenu-item" routerLink="/noticias">
+                Apecam Notícias
+            </a>
+            <a class="submenu-item" routerLink="/agenda">
+                Agenda
+            </a>
+            <a class="submenu-item" routerLink="/conquistas">
+                Nossas Conquistas
+            </a>
+            <a class="submenu-item" href="https://www.youtube.com/watch?v=1bN278rmCj0" target="_blank">
+                Entrevistas
+            </a>
+            <a class="submenu-item" routerLink="/historias-superacao">
+                Histórias de Superação
+            </a>
+        </div>
+
+        <a class="menu-item" routerLink="apecam-lovers">
+            Apecam Lovers
+        </a>
+
+        <a class="menu-item" routerLink="modalidades">
+            Modalidades
+        </a>
+
+        <a class="menu-item" routerLink="recordacoes">
+            Recordações
+        </a>
+
+        <a class="menu-item" routerLink="historia-esporte-paralimpico">
+            História do Esporte Paralímpico
+        </a>
+
+        <a class="menu-item quero-doar" routerLink="quero-doar">
+            Quero Doar
+        </a>
+    </div>
+  </div>
+</div>

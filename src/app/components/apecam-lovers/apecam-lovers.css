@@ -15,6 +15,10 @@ h2{
 	margin-bottom: 0.5rem;
 }
 
+.box{
+	height: 30rem;
+}
+
 p{ line-height: 1.75; }
 
 .contatos{
@@ -24,3 +28,59 @@ p{ line-height: 1.75; }
 	border-radius: 0.5rem;
 	background: rgba(255,102,52,0.06);
 }
+
+.logo-wrapper {
+    width: 15rem;
+    height: 15rem;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 1rem;
+    padding: 2.5rem; /* ajuste conforme necessário */
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.patrocinadores{
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 1rem;
+	border-color: #fff;
+}
+
+.apoiadores{
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 1rem;
+	border-color: #fff;
+}
+
+/* .investor-dots .dot{
+	width: 100px;
+	height: 100px;
+	border-radius: 9999px;
+	background: #ffffff;
+	box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+	padding: 0.75rem;
+	object-fit: contain;
+	filter: grayscale(100%);
+	opacity: 0.95;
+	transition: filter 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+} */
+
+.patrocinadores .logo-wrapper:hover{ filter: grayscale(0%); opacity: 1; transform: translateY(-3px); }
+.apoiadores .logo-wrapper:hover{ filter: grayscale(0%); opacity: 1; transform: translateY(-3px); }
+
+@media (min-width: 640px){ .investor-dots{ grid-template-columns: repeat(6, 100px); } }
+@media (min-width: 1024px){ .investor-dots{ grid-template-columns: repeat(8, 100px); } }

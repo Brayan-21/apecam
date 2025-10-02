@@ -21,7 +21,29 @@ header{
 
 .navbar{
     height: 6rem;
-    border-bottom: 0.1rem solid #FF6634;
+    /* border-bottom: 0.1rem solid #FF6634; */
+}
+
+.quero-doar{
+    background-color: #FF6634;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+
+.quero-doar:hover{
+    font-weight: 800;
+}
+
+.navbar-burger {
+    color: #FF6634;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.navbar-burger span {
+    height: 3px;
+    width: 24px;
+    left: calc(50% - 12px);  /* Centraliza as linhas */
 }
 
 /* restaurado ao estilo original (sem hover custom) */
