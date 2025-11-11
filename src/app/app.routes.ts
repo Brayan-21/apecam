@@ -60,5 +60,53 @@ export const routes: Routes = [
     {
         path: 'historias-superacao',
         loadComponent: () => import('./components/historias-superacao/historias-superacao').then(c => c.HistoriasSuperacao)
+    },
+    {
+        path: 'admin',
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./components/admin/admin-login/admin-login').then(c => c.AdminLogin)
+            },
+            {
+                path: 'painel',
+                loadComponent: () => import('./components/admin/admin-painel/admin-painel').then(c => c.AdminPainel),
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'apecam-noticias'
+                    },
+                    {
+                        path: 'apecam-noticias',
+                        loadComponent: () => import('./components/admin/apecam-noticias/apecam-noticias').then(c => c.AdminApecamNoticias)
+                    },
+                    {
+                        path: 'agenda',
+                        loadComponent: () => import('./components/admin/agenda/agenda').then(c => c.AdminAgenda)
+                    },
+                    {
+                        path: 'nossas-conquistas',
+                        loadComponent: () => import('./components/admin/nossas-conquistas/nossas-conquistas').then(c => c.AdminNossasConquistas)
+                    },
+                    {
+                        path: 'entrevistas',
+                        loadComponent: () => import('./components/admin/entrevistas/entrevistas').then(c => c.AdminEntrevistas)
+                    },
+                    {
+                        path: 'historias-superacao',
+                        loadComponent: () => import('./components/admin/historias-superacao/historias-superacao').then(c => c.AdminHistoriasSuperacao)
+                    },
+                    {
+                        path: 'recordacoes',
+                        loadComponent: () => import('./components/admin/recordacoes/recordacoes').then(c => c.AdminRecordacoes)
+                    },
+                    {
+                        path: 'transparencia',
+                        loadComponent: () => import('./components/admin/transparencia/transparencia').then(c => c.AdminTransparencia)
+                    }
+                ]
+            }
+        ]
     }
 ];

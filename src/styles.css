@@ -32,3 +32,35 @@ body {
 
 /* utilidades */
 .text-center{ text-align: center; }
+
+/* modo admin: ocultar componentes públicos */
+body.admin-mode .social-fab,
+body.admin-mode [vw],
+body.admin-mode [vw-access-button]{
+	display: none !important;
+}
+
+/* estilos compartilhados da área admin */
+.admin-content-header{
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.admin-content-header h1{
+	font-size: 2rem;
+	font-weight: 600;
+	margin: 0;
+}
+
+.admin-content-header p{
+	color: rgba(26,26,26,0.6);
+	margin: 0;
+}
+
+.admin-card{
+	background: #ffffff;
+	border-radius: 1.25rem;
+	padding: 2.25rem;
+	box-shadow: 0 18px 35px rgba(15,15,16,0.08);
+}

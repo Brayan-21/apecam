@@ -1,0 +1,59 @@
+<section class="admin-login">
+    <a class="back-link" routerLink="/">← Voltar para o site</a>
+
+    <div class="card">
+        <div class="header">
+            <h1>Área Administrativa</h1>
+            <p>Faça login com seu CPF e senha para acessar o painel da APECAM.</p>
+        </div>
+
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate autocomplete="off">
+            <label class="form-label" for="cpf">CPF</label>
+            <input
+                id="cpf"
+                name="cpf"
+                type="tel"
+                class="form-input"
+                placeholder="000.000.000-00"
+                maxlength="14"
+                [(ngModel)]="cpf"
+                (input)="onCpfInput($event)"
+                (keydown)="onCpfKeydown($event)"
+                (paste)="onCpfPaste($event)"
+                required
+                inputmode="numeric"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+                [disabled]="carregando"
+            >
+
+            <label class="form-label" for="senha">Senha</label>
+            <div class="input-wrapper">
+                <input
+                    id="senha"
+                    name="senha"
+                    [type]="mostrarSenha ? 'text' : 'password'"
+                    class="form-input"
+                    placeholder="Informe sua senha"
+                    [(ngModel)]="senha"
+                    required
+                    autocomplete="new-password"
+                    [disabled]="carregando"
+                >
+                <button type="button" class="toggle-visibility" (click)="alternarSenha()" [attr.aria-pressed]="mostrarSenha">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path *ngIf="!mostrarSenha" d="M12 5c-7.633 0-11 7-11 7s3.367 7 11 7 11-7 11-7-3.367-7-11-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/>
+                        <path *ngIf="mostrarSenha" d="M12 5c-7.633 0-11 7-11 7 1.299 2.304 3.524 4.897 6.7 6.174l-1.246 1.246 1.414 1.414 14.142-14.142-1.414-1.414-2.126 2.126C17.734 6.155 15.182 5 12 5zm7.187 4.5l-2.016 2.016A4.985 4.985 0 0117 12c0 2.761-2.239 5-5 5-.492 0-.963-.072-1.414-.206L9.44 17.94A10.987 10.987 0 011.342 12S4.709 5 12 5c2.451 0 4.48.741 6.187 1.5z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <button class="btn-primary" type="submit" [disabled]="loginForm.invalid || carregando">
+                <span *ngIf="!carregando">Entrar</span>
+                <span *ngIf="carregando" class="spinner"></span>
+            </button>
+        </form>
+    </div>
+</section>

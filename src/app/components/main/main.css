@@ -5,3 +5,7 @@
     margin-top: 6rem;
 }
 
+:host-context(.admin-mode) {
+    margin-top: 0;
+}
+
