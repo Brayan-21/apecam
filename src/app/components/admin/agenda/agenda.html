@@ -1,8 +1,92 @@
 <header class="admin-content-header">
     <h1>Agenda</h1>
-    <p>Organize os dias e horários dos treinos, eventos e compromissos oficiais.</p>
+    <p>Organize os dias e horários dos treinos, eventos e compromissos oficiais da APECAM.</p>
 </header>
 
-<section class="admin-card">
-    <p>Aqui você poderá configurar a agenda exibida na página inicial e em outras sessões.</p>
+<section class="agenda-grid">
+    <div class="calendar-card">
+        <div class="calendar-toolbar">
+            <div class="controls-esquerda">
+                <button type="button" class="btn-outline" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                    ‹ Anterior
+                </button>
+                <button type="button" class="btn-outline" mwlCalendarToday [(viewDate)]="viewDate">
+                    Hoje
+                </button>
+                <button type="button" class="btn-outline" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+                    Próximo ›
+                </button>
+            </div>
+            <div class="controls-direita">
+                <button type="button" class="btn-toggle" (click)="mudarVisao(CalendarView.Month)" [class.active]="view === CalendarView.Month">Mês</button>
+                <button type="button" class="btn-toggle" (click)="mudarVisao(CalendarView.Week)" [class.active]="view === CalendarView.Week">Semana</button>
+                <button type="button" class="btn-toggle" (click)="mudarVisao(CalendarView.Day)" [class.active]="view === CalendarView.Day">Dia</button>
+            </div>
+        </div>
+
+        <mwl-calendar-month-view
+            *ngIf="view === CalendarView.Month"
+            [viewDate]="viewDate"
+            [events]="eventos"
+            [refresh]="refresh"
+            [activeDayIsOpen]="activeDayIsOpen"
+            (dayClicked)="diaClicado($event)"
+            (eventClicked)="eventoClicado($event.event)"
+            [weekStartsOn]="1"
+        ></mwl-calendar-month-view>
+
+        <mwl-calendar-week-view
+            *ngIf="view === CalendarView.Week"
+            [viewDate]="viewDate"
+            [events]="eventos"
+            [refresh]="refresh"
+        ></mwl-calendar-week-view>
+
+        <mwl-calendar-day-view
+            *ngIf="view === CalendarView.Day"
+            [viewDate]="viewDate"
+            [events]="eventos"
+            [refresh]="refresh"
+        ></mwl-calendar-day-view>
+    </div>
+
+    <div class="admin-card agenda-form">
+        <h2>Adicionar evento</h2>
+        <p class="descricao">Selecione uma data no calendário e cadastre um novo evento.</p>
+
+        <div *ngIf="diaSelecionada; else selecioneDia" class="evento-card">
+            <p class="data-selecionada">{{ diaSelecionada | date:'EEEE, d "de" MMMM' | titlecase }}</p>
+
+            <label class="form-label" for="titulo">Título do evento</label>
+            <input id="titulo" class="form-input" type="text" [(ngModel)]="novoTitulo" placeholder="Ex.: Treino de Atletismo"/>
+
+            <div class="paleta">
+                <span class="paleta-label">Cor do evento</span>
+                <div class="paleta-opcoes">
+                    <button type="button" class="pill" [class.selected]="corSelecionada === 'primary'" (click)="corSelecionada = 'primary'" style="--pill-color: #FF6634"></button>
+                    <button type="button" class="pill" [class.selected]="corSelecionada === 'neutral'" (click)="corSelecionada = 'neutral'" style="--pill-color: #0f0f10"></button>
+                    <button type="button" class="pill" [class.selected]="corSelecionada === 'apoio'" (click)="corSelecionada = 'apoio'" style="--pill-color: #FF9C6E"></button>
+                </div>
+            </div>
+
+            <button class="btn-primary" type="button" (click)="adicionarEvento()">
+                Salvar evento
+            </button>
+
+            <div class="lista-eventos" *ngIf="eventosSelecionados.length">
+                <h3>Eventos do dia</h3>
+                <ul>
+                    <li *ngFor="let evento of eventosSelecionados">
+                        <span class="bullet" [style.background]="evento.color?.primary"></span>
+                        <span class="titulo">{{ evento.title }}</span>
+                        <button type="button" class="btn-remover" (click)="removerEvento(evento)" aria-label="Remover evento">Remover</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <ng-template #selecioneDia>
+            <p class="hint">Clique em qualquer data do calendário para começar.</p>
+        </ng-template>
+    </div>
 </section>

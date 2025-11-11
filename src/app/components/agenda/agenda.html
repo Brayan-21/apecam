@@ -1,1 +1,86 @@
-<h2 class="title">🚀 Em Breve...</h2>
+<section class="agenda-publica">
+    <h1>Agenda APECAM</h1>
+    <p class="subtitulo">Fique por dentro dos treinos, encontros e compromissos da associação.</p>
+
+    <div class="calendar-wrapper">
+        <div class="calendar-toolbar">
+            <div class="controls-esquerda">
+                <button type="button" class="btn-outline" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                    ‹ Anterior
+                </button>
+                <button type="button" class="btn-outline" mwlCalendarToday [(viewDate)]="viewDate">
+                    Hoje
+                </button>
+                <button type="button" class="btn-outline" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+                    Próximo ›
+                </button>
+            </div>
+            <div class="controls-direita">
+                <button type="button" class="btn-toggle" (click)="mudarVisao(CalendarView.Month)" [class.active]="view === CalendarView.Month">Mês</button>
+                <button type="button" class="btn-toggle" (click)="mudarVisao(CalendarView.Week)" [class.active]="view === CalendarView.Week">Semana</button>
+                <button type="button" class="btn-toggle" (click)="mudarVisao(CalendarView.Day)" [class.active]="view === CalendarView.Day">Dia</button>
+            </div>
+        </div>
+
+        <div class="calendar-container" #calendarContainer (mouseleave)="limparHover()">
+            <mwl-calendar-month-view
+                *ngIf="view === CalendarView.Month"
+                [viewDate]="viewDate"
+                [events]="eventos"
+                [cellTemplate]="customCell"
+                [weekStartsOn]="1"
+                [locale]="locale"
+            ></mwl-calendar-month-view>
+
+            <mwl-calendar-week-view
+                *ngIf="view === CalendarView.Week"
+                [viewDate]="viewDate"
+                [events]="eventos"
+                [locale]="locale"
+            ></mwl-calendar-week-view>
+
+            <mwl-calendar-day-view
+                *ngIf="view === CalendarView.Day"
+                [viewDate]="viewDate"
+                [events]="eventos"
+                [locale]="locale"
+            ></mwl-calendar-day-view>
+
+            @if (hoverInfo) {
+                <div class="painel-flutuante" [ngStyle]="{'top.px': hoverInfo.top, 'left.px': hoverInfo.left}" [class.esquerda]="hoverInfo.side === 'left'">
+                    <div class="painel-card" [class.esquerda]="hoverInfo.side === 'left'">
+                        <h2>{{ hoverInfo.formattedDate }}</h2>
+                        @if (hoverInfo.events.length > 0) {
+                            <ul>
+                                @for (evento of hoverInfo.events; track $index) {
+                                    <li>
+                                        <span class="bullet" [style.background]="evento.color?.primary"></span>
+                                        <span class="titulo">{{ evento.title }}</span>
+                                    </li>
+                                }
+                            </ul>
+                        } @else {
+                            <p class="hint">Ainda não há eventos cadastrados para este dia.</p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <ng-template #customCell let-day="day">
+        <div class="custom-day"
+             #cellRef
+             [class.fora-mes]="!day.inMonth"
+             [class.hoje]="day.isToday"
+             (mouseenter)="onDayHover(day, cellRef)"
+             (mouseleave)="limparHover()">
+            <div class="custom-day-top">
+                <span class="custom-dia-numero">{{ day.date | date:'d' }}</span>
+            </div>
+            <div class="custom-day-eventos">
+                <span class="marker" *ngFor="let evento of day.events" [style.background]="evento.color?.primary"></span>
+            </div>
+        </div>
+    </ng-template>
+</section>
