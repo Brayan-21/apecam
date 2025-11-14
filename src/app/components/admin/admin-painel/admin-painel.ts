@@ -30,5 +30,6 @@ export class AdminPainel {
 
     logout(): void {
         this.router.navigate(['/admin']);
+        sessionStorage.removeItem('token');
     }
 }

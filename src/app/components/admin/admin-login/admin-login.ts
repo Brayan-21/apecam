@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { Login } from '../../../shared/services/login';
+import { UsuarioLogin } from '../../../shared/models/usuario-login';
 
 @Component({
     selector: 'app-admin-login',
@@ -16,7 +18,9 @@ export class AdminLogin {
     carregando = false;
     mostrarSenha = false;
 
-    constructor(private router: Router) {}
+    private usuarioLogin: UsuarioLogin = new UsuarioLogin();
+
+    constructor(private router: Router, private login: Login, private cdr: ChangeDetectorRef) {}
 
     onSubmit(): void {
         if (this.carregando) {
@@ -26,7 +30,27 @@ export class AdminLogin {
         this.carregando = true;
 
         setTimeout(() => {
-            this.router.navigate(['/admin/painel']);
+            // this.router.navigate(['/admin/painel']);
+            this.usuarioLogin = new UsuarioLogin();
+            this.usuarioLogin.cpf = this.cpf.replace(/\D/g, '')
+            this.usuarioLogin.senha = this.senha;
+
+            this.login.login(this.usuarioLogin).subscribe({
+                next: (res) =>{
+                    if(res){
+                        console.log("Res:", res);
+                        sessionStorage.setItem('token', res.token);
+                        this.router.navigate(['/admin/painel']);
+                        this.carregando = false;
+                        this.cdr.detectChanges();                                                
+                    }
+                },
+                error: (err) =>{
+                    console.log("Erro:", err.error); 
+                    this.carregando = false;
+                    this.cdr.detectChanges();                   
+                }
+            });
         }, 400);
     }
 
