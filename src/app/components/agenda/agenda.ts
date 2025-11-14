@@ -33,7 +33,7 @@ interface HoverInfo {
     imports: [CommonModule, CalendarModule],
     providers: [
         { provide: LOCALE_ID, useValue: 'pt-BR' },
-        { provide: DateAdapter, useFactory: () => adapterFactory(ptBR) },
+        { provide: DateAdapter, useFactory: adapterFactory },
         CalendarUtils,
         CalendarA11y,
         CalendarDateFormatter,
