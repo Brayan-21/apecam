@@ -7,6 +7,7 @@ import { QueroDoar } from './components/quero-doar/quero-doar';
 import { Contatos } from './components/contatos/contatos';
 import { Inicio } from './components/inicio/inicio';
 import { Galeria } from './components/galeria/galeria';
+import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -71,6 +72,7 @@ export const routes: Routes = [
             {
                 path: 'painel',
                 loadComponent: () => import('./components/admin/admin-painel/admin-painel').then(c => c.AdminPainel),
+                canActivate: [authGuard],
                 children: [
                     {
                         path: '',
@@ -79,31 +81,38 @@ export const routes: Routes = [
                     },
                     {
                         path: 'apecam-noticias',
-                        loadComponent: () => import('./components/admin/apecam-noticias/apecam-noticias').then(c => c.AdminApecamNoticias)
+                        loadComponent: () => import('./components/admin/apecam-noticias/apecam-noticias').then(c => c.AdminApecamNoticias),
+                        canActivate: [authGuard]
                     },
                     {
                         path: 'agenda',
-                        loadComponent: () => import('./components/admin/agenda/agenda').then(c => c.AdminAgenda)
+                        loadComponent: () => import('./components/admin/agenda/agenda').then(c => c.AdminAgenda),
+                        canActivate: [authGuard]
                     },
                     {
                         path: 'nossas-conquistas',
-                        loadComponent: () => import('./components/admin/nossas-conquistas/nossas-conquistas').then(c => c.AdminNossasConquistas)
+                        loadComponent: () => import('./components/admin/nossas-conquistas/nossas-conquistas').then(c => c.AdminNossasConquistas),
+                        canActivate: [authGuard]
                     },
                     {
                         path: 'entrevistas',
-                        loadComponent: () => import('./components/admin/entrevistas/entrevistas').then(c => c.AdminEntrevistas)
+                        loadComponent: () => import('./components/admin/entrevistas/entrevistas').then(c => c.AdminEntrevistas),
+                        canActivate: [authGuard]
                     },
                     {
                         path: 'historias-superacao',
-                        loadComponent: () => import('./components/admin/historias-superacao/historias-superacao').then(c => c.AdminHistoriasSuperacao)
+                        loadComponent: () => import('./components/admin/historias-superacao/historias-superacao').then(c => c.AdminHistoriasSuperacao),
+                        canActivate: [authGuard]
                     },
                     {
                         path: 'recordacoes',
-                        loadComponent: () => import('./components/admin/recordacoes/recordacoes').then(c => c.AdminRecordacoes)
+                        loadComponent: () => import('./components/admin/recordacoes/recordacoes').then(c => c.AdminRecordacoes),
+                        canActivate: [authGuard]
                     },
                     {
                         path: 'transparencia',
-                        loadComponent: () => import('./components/admin/transparencia/transparencia').then(c => c.AdminTransparencia)
+                        loadComponent: () => import('./components/admin/transparencia/transparencia').then(c => c.AdminTransparencia),
+                        canActivate: [authGuard]
                     }
                 ]
             }
