@@ -121,8 +121,18 @@ export const routes: Routes = [
                     },
                     {
                         path: 'recordacoes',
-                        loadComponent: () => import('./components/admin/recordacoes/recordacoes').then(c => c.AdminRecordacoes),
-                        canActivate: [authGuard]
+                        children: [
+                            {
+                                path: '',
+                                loadComponent: () => import('./components/admin/recordacoes/recordacoes').then(c => c.AdminRecordacoes),
+                                canActivate: [authGuard]
+                            },
+                            {
+                                path: 'recordacao-detalhe',
+                                loadComponent: () => import('./components/admin/recordacoes/recordacao-detalhe/recordacao-detalhe').then(c => c.RecordacaoDetalhe),
+                                canActivate: [authGuard]
+                            }
+                        ]
                     },
                     {
                         path: 'transparencia',

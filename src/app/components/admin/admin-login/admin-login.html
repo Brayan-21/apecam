@@ -1,6 +1,15 @@
 <section class="admin-login">
     <a class="back-link" routerLink="/">← Voltar para o site</a>
 
+    <app-alert
+        [type]="alertType"
+        [message]="alertMessage"
+        [show]="alertShow"
+        [autoClose]="true"
+        [autoCloseDelay]="5000"
+        (closed)="onAlertClosed()">
+    </app-alert>
+
     <div class="card">
         <div class="header">
             <h1>Área Administrativa</h1>

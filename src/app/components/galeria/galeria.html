@@ -3,41 +3,37 @@
 		<h1 class="title is-3 has-text-centered">Nossas Recordações</h1>
 		<p class="subtitle has-text-centered">Momentos que contam nossa história</p>
 
-		<div class="gallery-grid">
-			<img src="apecam/apecam-02.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-06.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-07.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-08.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-09.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-11.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-12.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-13.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-15.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-16.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-17.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-18.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-19.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-20.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-21.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-22.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-23.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-24.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-25.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-26.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-27.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-28.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-29.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-30.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-31.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-32.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-33.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-34.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-35.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-36.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-37.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-38.webp" alt="Foto 1" loading="lazy">
-			<img src="apecam/apecam-39.webp" alt="Foto 1" loading="lazy">
+		<div class="gallery-grid" *ngIf="!carregando && recordacoes.length > 0">
+			<ng-container *ngFor="let recordacao of recordacoes">
+				<img
+					*ngIf="temImagemValida(recordacao)"
+					[src]="getImagemUrl(recordacao)"
+					alt="Recordação APECAM"
+					loading="lazy"
+					(error)="onImagemError($event)"
+					(click)="abrirImagemModal(recordacao)"
+					style="cursor: pointer;"
+				>
+			</ng-container>
+		</div>
+
+		<div *ngIf="carregando" style="text-align: center; padding: 2rem;">
+			<p>Carregando recordações...</p>
+		</div>
+
+		<div *ngIf="!carregando && recordacoes.length === 0" style="text-align: center; padding: 2rem;">
+			<p>Nenhuma recordação disponível no momento.</p>
 		</div>
 	</div>
 </section>
+
+<!-- Modal de Imagem em Tela Cheia -->
+<div class="image-modal-overlay" *ngIf="imagemModalShow" (click)="fecharImagemModal()">
+	<div class="image-modal-container" (click)="$event.stopPropagation()">
+		<button class="image-modal-close" (click)="fecharImagemModal()" type="button" aria-label="Fechar">
+			<span class="material-icons">close</span>
+		</button>
+		<img [src]="imagemModalUrl" alt="Recordação em tela cheia" />
+	</div>
+</div>
 

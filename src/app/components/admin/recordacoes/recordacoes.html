@@ -1,8 +1,83 @@
+<app-alert
+    [type]="alertType"
+    [message]="alertMessage"
+    [show]="alertShow"
+    [autoClose]="true"
+    [autoCloseDelay]="5000"
+    (closed)="onAlertClosed()">
+</app-alert>
+
+<app-confirm-modal
+    [show]="modalShow"
+    [title]="modalTitle"
+    [message]="modalMessage"
+    [type]="modalType"
+    confirmText="Excluir"
+    cancelText="Cancelar"
+    (confirmed)="onModalConfirmed()"
+    (cancelled)="onModalCancelled()">
+</app-confirm-modal>
+
 <header class="admin-content-header">
-    <h1>Recordações</h1>
-    <p>Monte galerias com fotos marcantes das competições e eventos da APECAM.</p>
+    <div class="header-content">
+        <div>
+            <h1>Recordações</h1>
+            <p>Monte galerias com fotos marcantes das competições e eventos da APECAM.</p>
+        </div>
+        <button class="btn-primary" (click)="adicionarNova()" type="button">
+            <span class="material-icons">add</span>
+            Adicionar Nova Recordação
+        </button>
+    </div>
 </header>
 
 <section class="admin-card">
-    <p>Em breve você poderá organizar coleções de imagens e álbuns temáticos.</p>
+    <div class="noticias-grid" *ngIf="!carregando && recordacoes.length > 0">
+        <article class="noticia-card" *ngFor="let recordacao of recordacoes">
+            <div class="card-actions">
+                <button class="btn-action btn-delete" (click)="excluir(recordacao.id!)" type="button" title="Excluir recordação">
+                    <span class="material-icons">delete</span>
+                    <span>Excluir</span>
+                </button>
+            </div>
+
+            <div class="card-image" (click)="getImagemUrl(recordacao) && abrirImagemModal(recordacao)">
+                <img *ngIf="getImagemUrl(recordacao)" [src]="getImagemUrl(recordacao)" alt="Recordação" (error)="onImagemError($event, recordacao)" />
+                <div *ngIf="!getImagemUrl(recordacao)" class="sem-imagem-card">
+                    <span class="material-icons">image</span>
+                    <span>Sem imagem</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <div class="card-footer">
+                    <span class="card-data">
+                        <span class="material-icons">schedule</span>
+                        {{ formatarData(recordacao.data_cadastro) }}
+                    </span>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="empty-state" *ngIf="!carregando && recordacoes.length === 0">
+        <span class="material-icons">photo_library</span>
+        <h3>Nenhuma recordação cadastrada</h3>
+        <p>Comece adicionando sua primeira recordação clicando no botão acima.</p>
+    </div>
+
+    <div class="loading-state" *ngIf="carregando">
+        <div class="spinner"></div>
+        <p>Carregando recordações...</p>
+    </div>
 </section>
+
+<!-- Modal de Imagem em Tela Cheia -->
+<div class="image-modal-overlay" *ngIf="imagemModalShow" (click)="fecharImagemModal()">
+    <div class="image-modal-container" (click)="$event.stopPropagation()">
+        <button class="image-modal-close" (click)="fecharImagemModal()" type="button" aria-label="Fechar">
+            <span class="material-icons">close</span>
+        </button>
+        <img [src]="imagemModalUrl" alt="Recordação em tela cheia" />
+    </div>
+</div>

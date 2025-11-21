@@ -110,7 +110,7 @@
 
 .logout-fab{
     position: fixed;
-    top: 1.5rem;
+    top: 0.6rem;
     right: 1.75rem;
     width: 52px;
     height: 52px;
@@ -172,7 +172,7 @@
         border-bottom: 1px solid rgba(15,15,16,0.06);
     }
     .logout-fab{
-        top: 1rem;
+        top: 0.4rem;
         right: 1rem;
     }
     .logout-fab .tooltip{ display: none; }

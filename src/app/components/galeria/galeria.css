@@ -28,3 +28,116 @@
 	.gallery-grid img{ height: 300px; }
 }
 
+/* Modal de Imagem em Tela Cheia */
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    animation: fadeIn 0.3s ease-out;
+    padding: 2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.image-modal-container {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: zoomIn 0.3s ease-out;
+    padding: 3rem 0 0 0;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.image-modal-container img {
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10002;
+    animation: fadeIn 0.2s ease-out;
+    transform: none;
+}
+
+.image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.image-modal-close:active {
+    transform: scale(0.95);
+}
+
+.image-modal-close .material-icons {
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .image-modal-overlay {
+        padding: 1rem;
+    }
+
+    .image-modal-container {
+        padding: 2.5rem 0 0 0;
+    }
+
+    .image-modal-close {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .image-modal-close .material-icons {
+        font-size: 20px;
+    }
+}
+

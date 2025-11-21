@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Login } from '../../../shared/services/login';
 import { UsuarioLogin } from '../../../shared/models/usuario-login';
+import { Alert, AlertType } from '../../../shared/components/alert/alert';
 
 @Component({
     selector: 'app-admin-login',
     standalone: true,
-    imports: [CommonModule, FormsModule, RouterLink],
+    imports: [CommonModule, FormsModule, RouterLink, Alert],
     templateUrl: './admin-login.html',
     styleUrl: './admin-login.css'
 })
@@ -17,6 +18,9 @@ export class AdminLogin {
     senha = '';
     carregando = false;
     mostrarSenha = false;
+    alertType: AlertType = 'error';
+    alertMessage = '';
+    alertShow = false;
 
     private usuarioLogin: UsuarioLogin = new UsuarioLogin();
 
@@ -42,13 +46,15 @@ export class AdminLogin {
                         sessionStorage.setItem('token', res.token);
                         this.router.navigate(['/admin/painel']);
                         this.carregando = false;
-                        this.cdr.detectChanges();                                                
+                        this.cdr.detectChanges();
                     }
                 },
                 error: (err) =>{
-                    console.log("Erro:", err.error); 
+                    console.log("Erro:", err.error);
+                    const errorMessage = err.error?.message || err.error?.error || 'CPF ou senha incorretos. Verifique suas credenciais e tente novamente.';
+                    this.mostrarAlerta('error', errorMessage);
                     this.carregando = false;
-                    this.cdr.detectChanges();                   
+                    this.cdr.detectChanges();
                 }
             });
         }, 400);
@@ -126,5 +132,17 @@ export class AdminLogin {
 
     alternarSenha(): void {
         this.mostrarSenha = !this.mostrarSenha;
+    }
+
+    mostrarAlerta(type: AlertType, message: string): void {
+        this.alertType = type;
+        this.alertMessage = message;
+        this.alertShow = true;
+        this.cdr.detectChanges();
+    }
+
+    onAlertClosed(): void {
+        this.alertShow = false;
+        this.cdr.detectChanges();
     }
 }
