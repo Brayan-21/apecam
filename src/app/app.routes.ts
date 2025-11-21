@@ -64,7 +64,7 @@ export const routes: Routes = [
     },
     {
         path: 'transparencia',
-        loadComponent: () => import('./components/transparencia/transparencia').then(c => c.Transparencia)
+        loadComponent: () => import('./components/transparencia/transparencia').then(c => c.TransparenciaComponent)
     },
     {
         path: 'admin',
@@ -140,8 +140,18 @@ export const routes: Routes = [
                     },
                     {
                         path: 'transparencia',
-                        loadComponent: () => import('./components/admin/transparencia/transparencia').then(c => c.AdminTransparencia),
-                        canActivate: [authGuard]
+                        children: [
+                            {
+                                path: '',
+                                loadComponent: () => import('./components/admin/transparencia/transparencia').then(c => c.AdminTransparencia),
+                                canActivate: [authGuard]
+                            },
+                            {
+                                path: 'transparencia-detalhe',
+                                loadComponent: () => import('./components/admin/transparencia/transparencia-detalhe/transparencia-detalhe').then(c => c.TransparenciaDetalhe),
+                                canActivate: [authGuard]
+                            }
+                        ]
                     }
                 ]
             }

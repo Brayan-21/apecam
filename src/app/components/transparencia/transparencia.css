@@ -1,31 +1,318 @@
 .section {
-	padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(180deg, rgba(255,102,52,0.08), rgba(255,102,52,0));
+    min-height: calc(100vh - 6rem);
 }
 
 .container {
-	max-width: 1200px;
-	margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .title {
-	font-size: 2rem;
-	font-weight: 700;
-	margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
 }
 
 .subtitle {
-	font-size: 1.1rem;
-	color: rgba(0, 0, 0, 0.7);
-	margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: rgba(26, 26, 26, 0.7);
+    margin-bottom: 2rem;
 }
 
-.content {
-	margin-top: 2rem;
+.filtro-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(15, 15, 16, 0.08);
+    border: 1px solid rgba(15, 15, 16, 0.06);
+    flex-wrap: wrap;
 }
 
-.content p {
-	font-size: 1rem;
-	line-height: 1.6;
-	color: rgba(0, 0, 0, 0.8);
+.filtro-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 0.95rem;
 }
 
+.filtro-label .material-icons {
+    font-size: 20px;
+    color: #ff6634;
+}
+
+.filtro-select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem 1rem;
+    border: 2px solid rgba(15, 15, 16, 0.12);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.filtro-select:focus {
+    outline: none;
+    border-color: #ff6634;
+    box-shadow: 0 0 0 3px rgba(255, 102, 52, 0.1);
+}
+
+.loading-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: rgba(26, 26, 26, 0.5);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 102, 52, 0.2);
+    border-top-color: #ff6634;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-state p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.documentos-container {
+    margin-top: 2rem;
+}
+
+.pasta-grupo {
+    margin-bottom: 3rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(15, 15, 16, 0.08);
+    border: 1px solid rgba(15, 15, 16, 0.06);
+}
+
+.pasta-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 102, 52, 0.2);
+}
+
+.pasta-titulo .material-icons {
+    font-size: 28px;
+    color: #ff6634;
+}
+
+.documentos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.documento-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem;
+    background: #f7f8fa;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(15, 15, 16, 0.06);
+    transition: all 0.2s ease;
+    gap: 1rem;
+}
+
+.documento-item:hover {
+    background: rgba(255, 102, 52, 0.04);
+    border-color: rgba(255, 102, 52, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 15, 16, 0.1);
+}
+
+.documento-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.documento-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    color: rgba(26, 26, 26, 0.5);
+}
+
+.documento-icon.icon-imagem {
+    color: #3b82f6;
+}
+
+.documento-icon.icon-pdf {
+    color: #ef4444;
+}
+
+.documento-icon.icon-planilha {
+    color: #22c55e;
+}
+
+.documento-detalhes {
+    flex: 1;
+    min-width: 0;
+}
+
+.documento-nome {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+    word-break: break-word;
+}
+
+.documento-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.documento-tipo {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background: rgba(15, 15, 16, 0.08);
+    color: rgba(26, 26, 26, 0.7);
+}
+
+.documento-data {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.6);
+}
+
+.documento-data .material-icons {
+    font-size: 16px;
+}
+
+.btn-acessar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: #ff6634;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 102, 52, 0.25);
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.btn-acessar:hover {
+    background: #e55a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 102, 52, 0.35);
+}
+
+.btn-acessar:active {
+    transform: translateY(0);
+}
+
+.btn-acessar .material-icons {
+    font-size: 18px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(15, 15, 16, 0.08);
+    border: 1px solid rgba(15, 15, 16, 0.06);
+}
+
+.empty-state .material-icons {
+    font-size: 64px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.4;
+    display: block;
+    color: rgba(26, 26, 26, 0.3);
+}
+
+.empty-state h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: rgba(26, 26, 26, 0.7);
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.5);
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .filtro-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtro-select {
+        width: 100%;
+    }
+
+    .pasta-grupo {
+        padding: 1.5rem;
+    }
+
+    .documento-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-acessar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .documento-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}

@@ -1,11 +1,74 @@
 <section class="section">
-	<div class="container">
-		<h1 class="title is-3 has-text-centered">Transparência</h1>
-		<p class="subtitle has-text-centered">Acesse informações sobre a gestão e prestação de contas da APECAM</p>
+    <div class="container">
+        <h1 class="title is-3 has-text-centered">Transparência</h1>
+        <p class="subtitle has-text-centered">Acesse informações sobre a gestão e prestação de contas da APECAM</p>
 
-		<div class="content">
-			<p>Em breve você poderá acessar relatórios, prestações de contas e documentos oficiais da APECAM.</p>
-		</div>
-	</div>
+        <div class="filtro-container" *ngIf="!carregando && pastasDisponiveis.length > 1">
+            <label for="filtro-pasta" class="filtro-label">
+                <span class="material-icons">folder</span>
+                Filtrar por pasta:
+            </label>
+            <select
+                id="filtro-pasta"
+                class="filtro-select"
+                [(ngModel)]="pastaSelecionada"
+                (change)="filtrarPorPasta()">
+                <option value="todas">Todas as pastas</option>
+                <option *ngFor="let pasta of pastasDisponiveis.slice(1)" [value]="pasta">
+                    {{ pasta }}
+                </option>
+            </select>
+        </div>
+
+        <div class="loading-state" *ngIf="carregando">
+            <div class="spinner"></div>
+            <p>Carregando documentos...</p>
+        </div>
+
+        <div class="documentos-container" *ngIf="!carregando">
+            <div *ngFor="let grupo of getDocumentosFiltrados()" class="pasta-grupo">
+                <h2 class="pasta-titulo">
+                    <span class="material-icons">folder_open</span>
+                    {{ grupo.nomePasta }}
+                </h2>
+
+                <div class="documentos-lista">
+                    <div *ngFor="let doc of grupo.documentos" class="documento-item">
+                        <div class="documento-info">
+                            <span class="material-icons documento-icon" [class.icon-imagem]="doc.tipo_arquivo === 'imagem'"
+                                  [class.icon-pdf]="doc.tipo_arquivo === 'pdf'"
+                                  [class.icon-planilha]="doc.tipo_arquivo === 'planilha'">
+                                {{ getTipoArquivoIcon(doc.tipo_arquivo) }}
+                            </span>
+                            <div class="documento-detalhes">
+                                <h3 class="documento-nome">{{ doc.nome_arquivo || 'Sem nome' }}</h3>
+                                <div class="documento-meta">
+                                    <span class="documento-tipo">{{ getTipoArquivoLabel(doc.tipo_arquivo) }}</span>
+                                    <span class="documento-data">
+                                        <span class="material-icons">schedule</span>
+                                        {{ formatarData(doc.data_cadastro) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="btn-acessar"
+                            (click)="visualizar(doc)"
+                            type="button"
+                            title="Acessar documento">
+                            <span class="material-icons">open_in_new</span>
+                            Acessar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="empty-state" *ngIf="getDocumentosFiltrados().length === 0">
+                <span class="material-icons">description</span>
+                <h3>Nenhum documento encontrado</h3>
+                <p *ngIf="pastaSelecionada !== 'todas'">Não há documentos na pasta selecionada.</p>
+                <p *ngIf="pastaSelecionada === 'todas'">Ainda não há documentos de transparência disponíveis.</p>
+            </div>
+        </div>
+    </div>
 </section>
-

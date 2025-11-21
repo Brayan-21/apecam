@@ -1,8 +1,122 @@
+<app-alert
+    [type]="alertType"
+    [message]="alertMessage"
+    [show]="alertShow"
+    [autoClose]="true"
+    [autoCloseDelay]="5000"
+    (closed)="onAlertClosed()">
+</app-alert>
+
+<app-confirm-modal
+    [show]="modalShow"
+    [title]="modalTitle"
+    [message]="modalMessage"
+    [type]="modalType"
+    confirmText="Excluir"
+    cancelText="Cancelar"
+    (confirmed)="onModalConfirmed()"
+    (cancelled)="onModalCancelled()">
+</app-confirm-modal>
+
 <header class="admin-content-header">
-    <h1>Transparência da APECAM</h1>
-    <p>Gerencie relatórios, prestações de contas e documentos oficiais.</p>
+    <div class="header-content">
+        <div>
+            <h1>Transparência da APECAM</h1>
+            <p>Gerencie relatórios, prestações de contas e documentos oficiais.</p>
+        </div>
+        <button class="btn-primary" (click)="adicionarNova()" type="button">
+            <span class="material-icons">add</span>
+            Adicionar Novo Documento
+        </button>
+    </div>
 </header>
 
 <section class="admin-card">
-    <p>Em breve esta área permitirá anexar PDFs, planilhas e links de transparência.</p>
+    <div class="filtro-container" *ngIf="!carregando && pastasDisponiveis.length > 1">
+        <label for="filtro-pasta" class="filtro-label">
+            <span class="material-icons">folder</span>
+            Filtrar por pasta:
+        </label>
+        <select
+            id="filtro-pasta"
+            class="filtro-select"
+            [(ngModel)]="pastaSelecionada"
+            (change)="filtrarPorPasta()">
+            <option value="todas">Todas as pastas</option>
+            <option *ngFor="let pasta of pastasDisponiveis.slice(1)" [value]="pasta">
+                {{ pasta }}
+            </option>
+        </select>
+    </div>
+
+    <div class="table-container" *ngIf="!carregando && transparenciasFiltradas.length > 0">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nome do Arquivo</th>
+                    <th>Nome da Pasta</th>
+                    <th>Tipo</th>
+                    <th>Data de Cadastro</th>
+                    <th class="actions-column">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transparencia of transparenciasFiltradas">
+                    <td>
+                        <div class="file-name-cell">
+                            <span class="material-icons file-icon">{{ getTipoArquivoIcon(transparencia.tipo_arquivo) }}</span>
+                            <span>{{ transparencia.nome_arquivo || 'Sem nome' }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="pasta-cell" *ngIf="transparencia.nome_pasta">{{ transparencia.nome_pasta }}</span>
+                        <span class="pasta-cell sem-pasta" *ngIf="!transparencia.nome_pasta">-</span>
+                    </td>
+                    <td>
+                        <span class="tipo-badge" [class.tipo-imagem]="transparencia.tipo_arquivo === 'imagem'"
+                              [class.tipo-pdf]="transparencia.tipo_arquivo === 'pdf'"
+                              [class.tipo-planilha]="transparencia.tipo_arquivo === 'planilha'">
+                            {{ getTipoArquivoLabel(transparencia.tipo_arquivo) }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="data-cell">
+                            <span class="material-icons">schedule</span>
+                            {{ formatarData(transparencia.data_cadastro) }}
+                        </span>
+                    </td>
+                    <td class="actions-cell">
+                        <div class="actions-buttons">
+                            <button class="btn-action btn-view" (click)="visualizar(transparencia)" type="button" title="Visualizar documento">
+                                <span class="material-icons">visibility</span>
+                                <span>Visualizar</span>
+                            </button>
+                            <button class="btn-action btn-delete" (click)="excluir(transparencia.id!)" type="button" title="Excluir documento">
+                                <span class="material-icons">delete</span>
+                                <span>Excluir</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="empty-state" *ngIf="!carregando && transparenciasFiltradas.length === 0 && transparencias.length > 0">
+        <span class="material-icons">folder_open</span>
+        <h3>Nenhum documento encontrado</h3>
+        <p *ngIf="pastaSelecionada !== 'todas'">Não há documentos na pasta selecionada.</p>
+        <p *ngIf="pastaSelecionada === 'todas'">Nenhum documento encontrado.</p>
+    </div>
+
+    <div class="empty-state" *ngIf="!carregando && transparencias.length === 0">
+        <span class="material-icons">description</span>
+        <h3>Nenhum documento cadastrado</h3>
+        <p>Comece adicionando seu primeiro documento clicando no botão acima.</p>
+    </div>
+
+    <div class="loading-state" *ngIf="carregando">
+        <div class="spinner"></div>
+        <p>Carregando documentos...</p>
+    </div>
 </section>

@@ -1,0 +1,118 @@
+<app-alert
+    [type]="alertType"
+    [message]="alertMessage"
+    [show]="alertShow"
+    [autoClose]="true"
+    [autoCloseDelay]="5000"
+    (closed)="onAlertClosed()">
+</app-alert>
+
+<div class="noticia-detalhe-container">
+    <header class="detalhe-header">
+        <div class="header-top">
+            <button class="btn-voltar" (click)="voltar()" type="button">
+                <span class="material-icons">arrow_back</span>
+                Voltar
+            </button>
+            <h1>Novo Documento</h1>
+        </div>
+        <p class="header-subtitle">Adicione um novo documento de transparência (imagem, PDF ou planilha)</p>
+    </header>
+
+    <form class="noticia-form" (ngSubmit)="salvar()" #transparenciaForm="ngForm">
+        <div class="form-section">
+            <label class="form-label" for="tipoArquivo">
+                Tipo de Arquivo
+                <span class="required">*</span>
+            </label>
+            <select
+                id="tipoArquivo"
+                name="tipoArquivo"
+                class="form-input"
+                [(ngModel)]="tipoArquivo"
+                (change)="onTipoArquivoChange()"
+                [disabled]="salvando"
+                required>
+                <option value="imagem">Imagem (WEBP)</option>
+                <option value="pdf">PDF</option>
+                <option value="planilha">Planilha (XLS, XLSX, ODS)</option>
+            </select>
+        </div>
+
+        <div class="form-section">
+            <label class="form-label" for="nomePasta">
+                Nome da Pasta
+                <span class="required">*</span>
+            </label>
+            <input
+                type="text"
+                id="nomePasta"
+                name="nomePasta"
+                class="form-input"
+                placeholder="Ex: Relatórios 2024, Prestação de Contas, etc. Ou adicione o nome de uma pasta existente no sistema."
+                [(ngModel)]="nomePasta"
+                [disabled]="salvando"
+                maxlength="255"
+                required
+            />
+        </div>
+
+        <div class="form-section">
+            <label class="form-label" for="arquivo">
+                Arquivo
+                <span class="required">*</span>
+            </label>
+            <div class="imagem-upload-container">
+                <div class="imagem-preview" *ngIf="transparencia.arquivo && transparencia.arquivo.trim() !== '' && tipoArquivo === 'imagem'">
+                    <div class="imagem-wrapper">
+                        <img [src]="transparencia.arquivo" alt="Preview do arquivo" />
+                    </div>
+                    <button type="button" class="btn-remover-imagem" (click)="removerArquivo()" [disabled]="salvando" title="Remover arquivo">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <div class="file-preview" *ngIf="transparencia.arquivo && transparencia.arquivo.trim() !== '' && tipoArquivo !== 'imagem'">
+                    <div class="file-info">
+                        <span class="material-icons file-icon">
+                            {{ tipoArquivo === 'pdf' ? 'picture_as_pdf' : 'table_chart' }}
+                        </span>
+                        <span class="file-name">{{ transparencia.arquivo }}</span>
+                    </div>
+                    <button type="button" class="btn-remover-imagem" (click)="removerArquivo()" [disabled]="salvando" title="Remover arquivo">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <div class="upload-area" *ngIf="!transparencia.arquivo || transparencia.arquivo.trim() === ''">
+                    <input
+                        type="file"
+                        id="arquivo"
+                        name="arquivo"
+                        [accept]="getAcceptTypes()"
+                        (change)="onArquivoChange($event)"
+                        [disabled]="salvando"
+                        class="file-input"
+                    />
+                    <label for="arquivo" class="upload-label">
+                        <span class="material-icons">{{ tipoArquivo === 'imagem' ? 'image' : tipoArquivo === 'pdf' ? 'picture_as_pdf' : 'table_chart' }}</span>
+                        <span>Clique para fazer upload ou arraste um arquivo</span>
+                        <small>{{ getTipoArquivoLabel() }} até {{ getMaxSize() }}</small>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn-secondary" (click)="voltar()" [disabled]="salvando">
+                Cancelar
+            </button>
+            <button type="submit" class="btn-primary" [disabled]="salvando || !arquivo || !nomePasta || nomePasta.trim() === ''">
+                <span *ngIf="!salvando">Adicionar Documento</span>
+                <span *ngIf="salvando">
+                    <span class="spinner-small"></span>
+                    Salvando...
+                </span>
+            </button>
+        </div>
+    </form>
+</div>
+
