@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Login } from '../../../shared/services/login';
 import { UsuarioLogin } from '../../../shared/models/usuario-login';
 import { Alert, AlertType } from '../../../shared/components/alert/alert';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-admin-login',
@@ -21,6 +22,7 @@ export class AdminLogin {
     alertType: AlertType = 'error';
     alertMessage = '';
     alertShow = false;
+    version = environment.version;
 
     private usuarioLogin: UsuarioLogin = new UsuarioLogin();
 
