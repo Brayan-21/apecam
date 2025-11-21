@@ -1,0 +1,14 @@
+<div class="alert-container" *ngIf="show" [class.alert-success]="type === 'success'" [class.alert-error]="type === 'error'" [class.alert-warning]="type === 'warning'">
+    <div class="alert-content">
+        <div class="alert-icon">
+            <span class="material-icons">{{ getIconName() }}</span>
+        </div>
+        <div class="alert-message">
+            <p>{{ message }}</p>
+        </div>
+        <button type="button" class="alert-close" (click)="close()" aria-label="Fechar alerta">
+            <span class="material-icons">close</span>
+        </button>
+    </div>
+</div>
+

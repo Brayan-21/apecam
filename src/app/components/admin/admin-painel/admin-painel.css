@@ -152,10 +152,8 @@
     transform: translateY(-50%) translateX(-4px);
 }
 
-.logout-fab svg{
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
+.logout-fab .material-icons{
+    font-size: 24px;
 }
 
 .logout-fab:hover{

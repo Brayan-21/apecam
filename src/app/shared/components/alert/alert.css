@@ -1,0 +1,135 @@
+.alert-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    min-width: 320px;
+    max-width: 500px;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    animation: slideIn 0.3s ease-out;
+    border: 2px solid;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.alert-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-icon .material-icons {
+    font-size: 24px;
+}
+
+.alert-message {
+    flex: 1;
+    min-width: 0;
+}
+
+.alert-message p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.alert-close {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    margin-top: 2px;
+}
+
+.alert-close:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.alert-close:active {
+    transform: scale(0.95);
+}
+
+.alert-close .material-icons {
+    font-size: 18px;
+}
+
+/* Success */
+.alert-success {
+    background: #ffffff;
+    border-color: #22c55e;
+    color: #15803d;
+}
+
+.alert-success .alert-icon {
+    color: #22c55e;
+}
+
+/* Error */
+.alert-error {
+    background: #ffffff;
+    border-color: #ef4444;
+    color: #dc2626;
+}
+
+.alert-error .alert-icon {
+    color: #ef4444;
+}
+
+/* Warning */
+.alert-warning {
+    background: #ffffff;
+    border-color: #f59e0b;
+    color: #d97706;
+}
+
+.alert-warning .alert-icon {
+    color: #f59e0b;
+}
+
+@media (max-width: 768px) {
+    .alert-container {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        min-width: auto;
+        max-width: none;
+    }
+
+    .alert-content {
+        padding: 1rem 1.25rem;
+    }
+}
+

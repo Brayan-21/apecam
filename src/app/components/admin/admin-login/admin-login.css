@@ -155,8 +155,9 @@ form{
     color: #ff6634;
 }
 
-.toggle-visibility svg{
-    width: 22px;
-    height: 22px;
-    fill: currentColor;
+.toggle-visibility .material-icons{
+    font-size: 22px;
+    display: block;
+    flex-shrink: 0;
+    color: inherit;
 }

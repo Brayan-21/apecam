@@ -81,8 +81,23 @@ export const routes: Routes = [
                     },
                     {
                         path: 'apecam-noticias',
-                        loadComponent: () => import('./components/admin/apecam-noticias/apecam-noticias').then(c => c.AdminApecamNoticias),
-                        canActivate: [authGuard]
+                        children: [
+                            {
+                                path: '',
+                                loadComponent: () => import('./components/admin/apecam-noticias/apecam-noticias').then(c => c.AdminApecamNoticias),
+                                canActivate: [authGuard]
+                            },
+                            {
+                                path: 'noticia-detalhe/:id',
+                                loadComponent: () => import('./components/admin/apecam-noticias/noticia-detalhe/noticia-detalhe').then(c => c.NoticiaDetalhe),
+                                canActivate: [authGuard]
+                            },
+                            {
+                                path: 'noticia-detalhe',
+                                loadComponent: () => import('./components/admin/apecam-noticias/noticia-detalhe/noticia-detalhe').then(c => c.NoticiaDetalhe),
+                                canActivate: [authGuard]
+                            }
+                        ]
                     },
                     {
                         path: 'agenda',

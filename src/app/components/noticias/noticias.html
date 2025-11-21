@@ -1,1 +1,57 @@
-<h2 class="title">🚀 Em Breve...</h2>
+<section class="noticias-section">
+    <div class="container">
+        <header class="section-header">
+            <h1>Notícias</h1>
+            <p>Fique por dentro das últimas novidades da APECAM</p>
+        </header>
+
+        <div class="loading-state" *ngIf="carregando">
+            <div class="spinner"></div>
+            <p>Carregando notícias...</p>
+        </div>
+
+        <div class="noticias-grid" *ngIf="!carregando && noticias.length > 0">
+            <article class="noticia-card" *ngFor="let noticia of noticias">
+                <div class="card-image">
+                    <img *ngIf="getImagemUrl(noticia)" [src]="getImagemUrl(noticia)" alt="{{ noticia.titulo }}" (error)="onImagemError($event)" />
+                    <div *ngIf="!getImagemUrl(noticia)" class="sem-imagem-card">
+                        <span class="material-icons">image</span>
+                        <span>Sem imagem</span>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <h3 class="card-titulo">{{ noticia.titulo || 'Sem título' }}</h3>
+                    <div class="card-descricao-container">
+                        <p class="card-descricao" [class.expandida]="estaExpandida(noticia.id!)">
+                            <span *ngIf="!estaExpandida(noticia.id!)">
+                                {{ truncarTexto(noticia.texto || noticia.descricao || 'Sem descrição', 150) }}
+                            </span>
+                            <span *ngIf="estaExpandida(noticia.id!)" [innerHTML]="noticia.texto || noticia.descricao || 'Sem descrição'"></span>
+                        </p>
+                        <button
+                            *ngIf="(noticia.texto || noticia.descricao || '').length > 150"
+                            class="btn-ver-mais"
+                            (click)="verMais(noticia.id!)"
+                            type="button">
+                            <span *ngIf="!estaExpandida(noticia.id!)">Ver mais</span>
+                            <span *ngIf="estaExpandida(noticia.id!)">Ver menos</span>
+                        </button>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-data">
+                            <span class="material-icons">schedule</span>
+                            {{ formatarData(noticia.data_cadastro) }}
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="empty-state" *ngIf="!carregando && noticias.length === 0">
+            <span class="material-icons">article</span>
+            <h3>Nenhuma notícia disponível</h3>
+            <p>Em breve teremos novidades para compartilhar!</p>
+        </div>
+    </div>
+</section>

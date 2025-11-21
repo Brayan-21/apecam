@@ -1,8 +1,94 @@
+<app-alert
+    [type]="alertType"
+    [message]="alertMessage"
+    [show]="alertShow"
+    [autoClose]="true"
+    [autoCloseDelay]="5000"
+    (closed)="onAlertClosed()">
+</app-alert>
+
+<app-confirm-modal
+    [show]="modalShow"
+    [title]="modalTitle"
+    [message]="modalMessage"
+    [type]="modalType"
+    confirmText="Excluir"
+    cancelText="Cancelar"
+    (confirmed)="onModalConfirmed()"
+    (cancelled)="onModalCancelled()">
+</app-confirm-modal>
+
 <header class="admin-content-header">
-    <h1>Apecam Notícias</h1>
-    <p>Gerencie as notícias publicadas na landing page e mantenha a comunidade informada.</p>
+    <div class="header-content">
+        <div>
+            <h1>Apecam Notícias</h1>
+            <p>Gerencie as notícias publicadas na landing page e mantenha a comunidade informada.</p>
+        </div>
+        <button class="btn-primary" (click)="adicionarNova()" type="button">
+            <span class="material-icons">add</span>
+            Adicionar Nova Notícia
+        </button>
+    </div>
 </header>
 
 <section class="admin-card">
-    <p>Em breve você poderá cadastrar, editar e remover notícias diretamente por aqui.</p>
+    <div class="noticias-grid" *ngIf="!carregando && noticias.length > 0">
+        <article class="noticia-card" *ngFor="let noticia of noticias">
+            <div class="card-actions">
+                <button class="btn-action btn-edit" (click)="editar(noticia.id!)" type="button" title="Editar notícia">
+                    <span class="material-icons">edit</span>
+                    <span>Editar</span>
+                </button>
+                <button class="btn-action btn-delete" (click)="excluir(noticia.id!)" type="button" title="Excluir notícia">
+                    <span class="material-icons">delete</span>
+                    <span>Excluir</span>
+                </button>
+            </div>
+
+            <div class="card-image">
+                <img *ngIf="getImagemUrl(noticia)" [src]="getImagemUrl(noticia)" alt="{{ noticia.titulo }}" (error)="onImagemError($event, noticia)" />
+                <div *ngIf="!getImagemUrl(noticia)" class="sem-imagem-card">
+                    <span class="material-icons">image</span>
+                    <span>Sem imagem</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <h3 class="card-titulo">{{ noticia.titulo || 'Sem título' }}</h3>
+                <div class="card-descricao-container">
+                    <p class="card-descricao" [class.expandida]="estaExpandida(noticia.id!)">
+                        <span *ngIf="!estaExpandida(noticia.id!)">
+                            {{ truncarTexto(noticia.texto || noticia.descricao || 'Sem descrição', 150) }}
+                        </span>
+                        <span *ngIf="estaExpandida(noticia.id!)" [innerHTML]="noticia.texto || noticia.descricao || 'Sem descrição'"></span>
+                    </p>
+                    <button
+                        *ngIf="(noticia.texto || noticia.descricao || '').length > 150"
+                        class="btn-ver-mais"
+                        (click)="verMais(noticia.id!)"
+                        type="button">
+                        <span *ngIf="!estaExpandida(noticia.id!)">Ver mais</span>
+                        <span *ngIf="estaExpandida(noticia.id!)">Ver menos</span>
+                    </button>
+                </div>
+                <div class="card-footer">
+                    <span class="card-data">
+                        <span class="material-icons">schedule</span>
+                        {{ formatarData(noticia.data_cadastro) }}
+                    </span>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="empty-state" *ngIf="!carregando && noticias.length === 0">
+        <span class="material-icons">article</span>
+        <h3>Nenhuma notícia cadastrada</h3>
+        <p>Comece adicionando sua primeira notícia clicando no botão acima.</p>
+    </div>
+
+    <div class="loading-state" *ngIf="carregando">
+        <div class="spinner"></div>
+        <p>Carregando notícias...</p>
+    </div>
 </section>

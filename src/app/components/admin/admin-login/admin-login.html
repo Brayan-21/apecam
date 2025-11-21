@@ -42,11 +42,8 @@
                     autocomplete="new-password"
                     [disabled]="carregando"
                 >
-                <button type="button" class="toggle-visibility" (click)="alternarSenha()" [attr.aria-pressed]="mostrarSenha">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path *ngIf="!mostrarSenha" d="M12 5c-7.633 0-11 7-11 7s3.367 7 11 7 11-7 11-7-3.367-7-11-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/>
-                        <path *ngIf="mostrarSenha" d="M12 5c-7.633 0-11 7-11 7 1.299 2.304 3.524 4.897 6.7 6.174l-1.246 1.246 1.414 1.414 14.142-14.142-1.414-1.414-2.126 2.126C17.734 6.155 15.182 5 12 5zm7.187 4.5l-2.016 2.016A4.985 4.985 0 0117 12c0 2.761-2.239 5-5 5-.492 0-.963-.072-1.414-.206L9.44 17.94A10.987 10.987 0 011.342 12S4.709 5 12 5c2.451 0 4.48.741 6.187 1.5z"/>
-                    </svg>
+                <button type="button" class="toggle-visibility" (click)="alternarSenha()" [attr.aria-pressed]="mostrarSenha" aria-label="Mostrar senha">
+                    <span class="material-icons">{{ mostrarSenha ? 'visibility_off' : 'visibility' }}</span>
                 </button>
             </div>
 

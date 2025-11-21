@@ -1,0 +1,27 @@
+<div class="modal-overlay" *ngIf="show" (click)="close()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <div class="modal-icon" [class.icon-danger]="type === 'danger'" [class.icon-warning]="type === 'warning'" [class.icon-info]="type === 'info'">
+                <span class="material-icons" *ngIf="type === 'danger'">error</span>
+                <span class="material-icons" *ngIf="type === 'warning'">warning</span>
+                <span class="material-icons" *ngIf="type === 'info'">info</span>
+            </div>
+            <h2 class="modal-title">{{ title }}</h2>
+            <button class="modal-close" (click)="close()" type="button" aria-label="Fechar">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>{{ message }}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" (click)="cancel()" type="button">
+                {{ cancelText }}
+            </button>
+            <button class="btn-confirm" [class.btn-danger]="type === 'danger'" [class.btn-warning]="type === 'warning'" [class.btn-info]="type === 'info'" (click)="confirm()" type="button">
+                {{ confirmText }}
+            </button>
+        </div>
+    </div>
+</div>
+
