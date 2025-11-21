@@ -63,6 +63,10 @@ export const routes: Routes = [
         loadComponent: () => import('./components/historias-superacao/historias-superacao').then(c => c.HistoriasSuperacao)
     },
     {
+        path: 'transparencia',
+        loadComponent: () => import('./components/transparencia/transparencia').then(c => c.Transparencia)
+    },
+    {
         path: 'admin',
         children: [
             {
